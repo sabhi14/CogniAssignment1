@@ -14,25 +14,28 @@ myCursor.execute("CREATE TABLE accountdetails ( \
 #myCursor.execute("select * from accountdetails")
 accountDetails=pd.read_csv('AccountDetails.csv')
 '''print(accountDetails)'''
-
+insertDetails=accountDetails[['ACCOUNT_ID'],['ACCOUNT_NA']]
+'''
 for index,row in accountDetails.iterrows():
   print(str(row["ACCOUNT_ID"])+"  "+row["ACCOUNT_NAME"])
   if(row["MODE"]=='I'):
-    values=(str(row["ACCOUNT_ID"]),row["ACCOUNT_NAME"])
+    insertDetails=accountDetails[str(row["ACCOUNT_ID"]),row["ACCOUNT_NAME"]]
+    '''values=(str(row["ACCOUNT_ID"]),row["ACCOUNT_NAME"])
     insertQuery="INSERT INTO `accountdetails`(ACCOUNT_ID,ACCOUNT_NAME) VALUES("+"%s"+","+"%s)"
     try:
       myCursor.execute(insertQuery,values)
     except:
-      print("SQL Error:- Rrcord Already Present")
-      
-  elif(row["MODE"]=='U'):
+      print("SQL Error:- Rrcord Already Present")'''
+  else:
+    print('others') 
+  '''elif(row["MODE"]=='U'):
     values=(row["ACCOUNT_NAME"],str(row["ACCOUNT_ID"]))
     updateQuery="UPDATE accountdetails SET ACCOUNT_NAME = %s WHERE ACCOUNT_ID=%s"
     try:
       myCursor.execute(updateQuery,values)
     except:
       print("SQL Error:- Record Already Present")
-  else:
-    print("DELETE")
+  else:'''
+    
 
-myConnection.commit()
+myConnection.commit()'''
